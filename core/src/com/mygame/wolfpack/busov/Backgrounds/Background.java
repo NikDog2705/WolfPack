@@ -12,8 +12,8 @@ import java.util.ArrayList;
 public class Background {
     ArrayList <Integer> forest;
     ArrayList <Integer> mountain;
-    BackGroundRightHexagon templ [];
-    PlayRightHexagon play[];
+    public BackGroundRightHexagon templ [];
+    public PlayRightHexagon play[];
     public static int null_field_y;
 
     public Background(){

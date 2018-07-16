@@ -1,10 +1,115 @@
 package com.mygame.wolfpack.busov.Characters;
 
-import com.mygame.wolfpack.busov.RightHexagon;
+import com.badlogic.gdx.graphics.Texture;
+import com.mygame.wolfpack.busov.Backgrounds.Background;
+
+import java.util.ArrayDeque;
+import java.util.ArrayList;
 
 /**
  * Created by Master_Igor on 27.06.2018.
  */
 
 public class Deer {
+
+    public Texture texture;
+    public static int height = 50;
+    public int x, y;
+    public int game_cell;
+    public Background background;
+    public ArrayList<Wolfs> wolf;
+    public ArrayList<DeerPack> deerPacks;
+    public boolean step = false;
+    public ArrayList<Integer> steps;
+
+    public Deer(int game_cell, Background background, ArrayList<Wolfs> wolf, ArrayList<DeerPack> deerPacks) {
+        texture = new Texture("Deer.png");
+        this.wolf = wolf;
+        this.deerPacks = deerPacks;
+        steps = new ArrayList<Integer>();
+    }
+
+    private void Step(){
+        DeerPack deerPack = new DeerPack();
+        int max = -666;
+        for (DeerPack deers: deerPacks) {
+            Bfs(deers);
+        }
+        for (DeerPack deers: deerPacks)
+            if (deers.d > max) {
+                max = deers.d;
+                deerPack = deers;
+            }
+        if (deerPack.path.size() > 1) {
+            if (!background.play[deerPack.path.get(deerPack.path.size() - 2)].red) {
+                steps.add(deerPack.path.get(deerPack.path.size() - 1));
+                steps.add(deerPack.path.get(deerPack.path.size() - 2));
+            }
+            else
+                steps.add(deerPack.path.get(deerPack.path.size() - 1));
+        }
+        else
+            steps.add(deerPack.path.get(deerPack.path.size() - 1));
+    }
+
+    private void Red(){
+        for (int i = 0; i < wolf.size(); ++i) {
+            background.play[wolf.get(i).game_cell].red = true;
+            for (int j = 0; j < background.play[wolf.get(i).game_cell].neighbors.size(); ++j)
+                background.play[background.play[wolf.get(i).game_cell].neighbors.get(j)].red = true;
+        }
+    }
+
+    public void update() {
+        if (!step) {
+            Red();
+            Step();
+            Cleaner();
+        }
+        step = true;
+    }
+
+    private void Bfs (DeerPack deerPack) {
+
+        ArrayDeque<Integer> q = new ArrayDeque <Integer>();
+        q.push(game_cell);
+        boolean[] used = new boolean [120];
+        boolean b = false;
+        int[] p = new int[120];
+        int[] d = new int[120];
+        d[game_cell] = 0;
+        p[game_cell] = -1;
+        used[game_cell] = true;
+
+         while (!q.isEmpty() && !b) {
+            int v = q.poll();
+            for (int i = 0; i < background.play[v].neighbors.size(); ++i) {
+                int to = background.play[v].neighbors.get(i);
+                if (!used[to]) {
+                    used[to] = true;
+                    p[to] = v;
+                    d[to] = d[v] + 1;
+                    if (!(background.play[to].red && background.play[v].red))
+                        q.push(to);
+                }
+                if (to == deerPack.game_cell) {
+                    b = true;
+                    break;
+                }
+            }
+         }
+         deerPack.d = d[deerPack.game_cell];
+        for (int v = deerPack.game_cell; v != -1; v = p[v]){
+            deerPack.path.add(v);
+        }
+    }
+
+    private void Cleaner(){
+        for (DeerPack deerPack: deerPacks) {
+            deerPack.path.clear();
+            deerPack.d = 0;
+        }
+        steps.clear();
+    }
+
 }

@@ -30,6 +30,11 @@ public class level_1 extends Plays implements Screen {
     }
 
     @Override
+    protected void update() {
+
+    }
+
+    @Override
     public void show() {
 
     }
@@ -46,7 +51,7 @@ public class level_1 extends Plays implements Screen {
             background.draw(game);
         game.spriteBatch.end();
 
-
+        update();
     }
 
     @Override

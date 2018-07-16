@@ -22,4 +22,5 @@ public abstract class Plays {
         background = new Background(forest, mountain);
     }
     protected abstract void Add();
+    protected abstract void update();
 }

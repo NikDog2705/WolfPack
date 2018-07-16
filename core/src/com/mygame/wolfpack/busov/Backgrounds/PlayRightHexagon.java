@@ -16,6 +16,7 @@ public class PlayRightHexagon extends RightHexagon {
     public boolean facet = false;
     public boolean left_facet = false;
     public boolean big_facet = false;
+    public boolean red = false;
     public ArrayList<Integer> neighbors;
 
     public Texture texture;
