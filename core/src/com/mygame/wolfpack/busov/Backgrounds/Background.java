@@ -1,6 +1,7 @@
 package com.mygame.wolfpack.busov.Backgrounds;
 
 import com.mygame.wolfpack.busov.Game;
+import com.mygame.wolfpack.busov.RightHexagon;
 
 import java.util.ArrayList;
 
@@ -44,13 +45,13 @@ public class Background {
 
     private void Mount(){
         for (int i = 0; i < mountain.size(); ++i){
-            templ[mountain.get(i)].setTexture("mountain");
+            templ[mountain.get(i)].setTexture(RightHexagon.mountain);
         }
     }
 
     private void Forest(){
         for (int i = 0; i < forest.size(); ++i){
-            play[forest.get(i)].setTexture("forest");
+            play[forest.get(i)].setTexture(RightHexagon.forest);
         }
     }
 
@@ -58,27 +59,27 @@ public class Background {
         null_field_y = (int)(com.mygame.wolfpack.busov.Game.Re_ScreenHeight - com.mygame.wolfpack.busov.Game.ScreenHeight);
         for (int i = 0; i < 33; ++i){
             if (i >= 0 && i < 9){
-                templ[i] = new BackGroundRightHexagon(BackGroundRightHexagon.weight * i,
-                        (int)(com.mygame.wolfpack.busov.Game.Re_ScreenHeight + BackGroundRightHexagon.height /4), "water");
+                templ[i] = new BackGroundRightHexagon(BackGroundRightHexagon.height * i,
+                        (int)(com.mygame.wolfpack.busov.Game.Re_ScreenHeight + BackGroundRightHexagon.height /4), RightHexagon.water);
                 continue;
             }
             if (i >= 9 && i < 17){
               templ[i] = new BackGroundRightHexagon((int)com.mygame.wolfpack.busov.Game.ScreenWidht,
                       (int)(com.mygame.wolfpack.busov.Game.Re_ScreenHeight -  BackGroundRightHexagon.height / 2
                               - BackGroundRightHexagon.Re_height * (i - 9) * 2 - BackGroundRightHexagon.Re_height),
-                      "water");
+                      RightHexagon.water);
                 continue;
             }
             if (i >= 17 && i <25 ){
                 templ[i] = new BackGroundRightHexagon((int) com.mygame.wolfpack.busov.Game.ScreenWidht
-                        - BackGroundRightHexagon.weight * (i - 17) - BackGroundRightHexagon.weight/2,
-                        null_field_y - BackGroundRightHexagon.height/4, "water");
+                        - BackGroundRightHexagon.height * (i - 17) - BackGroundRightHexagon.height/2,
+                        null_field_y - BackGroundRightHexagon.height/4, RightHexagon.water);
                 continue;
             }
             if (i >= 25 && i < 33) {
                 templ[i] = new BackGroundRightHexagon(0,
                         (int)(null_field_y + BackGroundRightHexagon.Re_height * (i - 25) * 2 + BackGroundRightHexagon.height/2),
-                        "water");
+                        RightHexagon.water);
                 continue;
             }
         }
@@ -89,14 +90,14 @@ public class Background {
         null_field_y = (int)(com.mygame.wolfpack.busov.Game.Re_ScreenHeight - com.mygame.wolfpack.busov.Game.ScreenHeight);
         for (int i = 0; i < 8; ++i){
             for (int j = 0; j < 8; ++j){
-                play[i * 15 + j] = new PlayRightHexagon((int)(PlayRightHexagon.weight / 2 + PlayRightHexagon.weight * j),
+                play[i * 15 + j] = new PlayRightHexagon((int)(PlayRightHexagon.height / 2 + PlayRightHexagon.height * j),
                         (int)(Game.Re_ScreenHeight - PlayRightHexagon.height/2 - PlayRightHexagon.Re_height * 2* i),
-                        "grass");
+                        RightHexagon.grass);
             }
             for (int j = 8; j < 15; ++j){
-                play[i*15 + j] = new PlayRightHexagon((int)(PlayRightHexagon.weight + PlayRightHexagon.weight *(j - 8)),
+                play[i*15 + j] = new PlayRightHexagon((int)(PlayRightHexagon.height + PlayRightHexagon.height *(j - 8)),
                         (int)(Game.Re_ScreenHeight - PlayRightHexagon.height/2 - PlayRightHexagon.Re_height
-                                - PlayRightHexagon.Re_height * 2 * i),"grass");
+                                - PlayRightHexagon.Re_height * 2 * i),RightHexagon.grass);
             }
         }
     }
@@ -106,7 +107,7 @@ public class Background {
         for (int i = 0; i < 16; ++i){
             play[k].left_facet = true;
             if (i % 2 == 0){
-                play[k].setTexture("left_grass");
+                play[k].setTexture(RightHexagon.left_grass);
                 play[k].facet = true;
                 play[k].big_facet = true;
                 k += 8;
@@ -119,7 +120,7 @@ public class Background {
         k = 7;
         for (int i = 0; i < 16; ++i){
             if (i % 2 == 0){
-                play[k].setTexture("right_grass");
+                play[k].setTexture(RightHexagon.right_grass);
                 play[k].facet = true;
                 play[k].big_facet = true;
                 k += 7;

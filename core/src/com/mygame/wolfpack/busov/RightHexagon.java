@@ -7,6 +7,7 @@ import com.badlogic.gdx.maps.tiled.renderers.HexagonalTiledMapRenderer;
  */
 
 public class RightHexagon {
+    public static int grass = 0, left_grass = 1, right_grass = 2, forest = 3, water = 0, mountain = 1;
 
     public int x,y;
 
@@ -47,10 +48,10 @@ public class RightHexagon {
         return false;
     }
 
-     public boolean Belong(int x1,int y1, int height, int weight){
+     public boolean Belong(int x1,int y1, int height){
         if (top_triangle(x1,y1,x, y + height / 2, height / 4)
                 || down_triangle(x1,y1,x, y - height / 2, height / 4)
-                || tetragon(x1,y1,x - weight / 2,y - height / 4, height/2, weight))
+                || tetragon(x1,y1,x - height / 2,y - height / 4, height/2, height))
             return true;
         return false;
     }

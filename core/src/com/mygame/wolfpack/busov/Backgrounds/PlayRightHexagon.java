@@ -12,7 +12,6 @@ import java.util.ArrayList;
 
 public class PlayRightHexagon extends RightHexagon {
     public static int height = 75;
-    public static int weight = 75;
     public static double Re_height = (Game.ScreenHeight - height) / 15;
     public boolean facet = false;
     public boolean left_facet = false;
@@ -22,22 +21,29 @@ public class PlayRightHexagon extends RightHexagon {
     public Texture texture;
 
 
-    public PlayRightHexagon(int x, int y, String name){
+    public PlayRightHexagon(int x, int y, int name){
         neighbors = new ArrayList<Integer>();
-        if (name.equals("forest"))
+        if (name == RightHexagon.forest)
             texture = new Texture("forest.png");
-        if (name.equals("grass"))
+        if (name == RightHexagon.grass)
             texture = new Texture("grass.png");
-        if (name.equals("left_grass"))
+        if (name == RightHexagon.left_grass)
             texture = new Texture("left_grass.png");
-        if (name.equals("right_grass"))
+        if (name == RightHexagon.right_grass)
             texture = new Texture("right_grass.png");
-        this.x = x - weight/2;
+        this.x = x - height/2;
         this.y = y - height/2;
     }
 
-    public void setTexture(String s){
-        texture = new Texture(s + ".png");
+    public void setTexture(int name){
+        if (name == RightHexagon.forest)
+            texture = new Texture("forest.png");
+        if (name == RightHexagon.grass)
+            texture = new Texture("grass.png");
+        if (name == RightHexagon.left_grass)
+            texture = new Texture("left_grass.png");
+        if (name == RightHexagon.right_grass)
+            texture = new Texture("right_grass.png");
     }
 }
 

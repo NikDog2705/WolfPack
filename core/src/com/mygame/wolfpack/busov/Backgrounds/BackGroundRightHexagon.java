@@ -11,22 +11,24 @@ import com.mygame.wolfpack.busov.RightHexagon;
 public class BackGroundRightHexagon extends RightHexagon {
 
     public static int height = 75;
-    public static int weight = 75;
     public static double Re_height = (Game.ScreenHeight - height) / 15;
     
     public Texture texture;
 
 
-    public BackGroundRightHexagon(int x, int y, String name){
-        if (name.equals("mountain"))
+    public BackGroundRightHexagon(int x, int y, int name){
+        if (name == RightHexagon.mountain)
             texture = new Texture("mountain.png");
-        if (name.equals("water"))
+        if (name == RightHexagon.water)
             texture = new Texture("water.png");
-        this.x = x - weight/2;
+        this.x = x - height/2;
         this.y = y - height/2;
     }
 
-    public void setTexture(String s){
-        texture = new Texture(s + ".png");
+    public void setTexture(int name){
+        if (name == RightHexagon.mountain)
+            texture = new Texture("mountain.png");
+        if (name == RightHexagon.water)
+            texture = new Texture("water.png");
     }
 }
