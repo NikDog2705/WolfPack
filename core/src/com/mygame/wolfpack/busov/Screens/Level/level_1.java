@@ -36,6 +36,7 @@ public class level_1 extends Plays implements Screen {
         wolfs.add(new Wolfs(55,background));
         wolfs.add(new Wolfs(58,background));
         deerPack.add(new DeerPack(41,background));
+        deerPack.add(new DeerPack(92,background));
         deer.add(new Deer(72,background,wolfs,deerPack));
     }
 

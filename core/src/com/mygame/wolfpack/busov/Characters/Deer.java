@@ -33,13 +33,13 @@ public class Deer {
 
     private void Step(){
         DeerPack deerPack = new DeerPack();
-        int max = -666;
+        int min = 666;
         for (DeerPack deers: deerPacks) {
             Bfs(deers);
         }
         for (DeerPack deers: deerPacks)
-            if (deers.d > max) {
-                max = deers.d;
+            if (deers.d < min) {
+                min = deers.d;
                 deerPack = deers;
             }
         if (deerPack.path.size() > 1) {
