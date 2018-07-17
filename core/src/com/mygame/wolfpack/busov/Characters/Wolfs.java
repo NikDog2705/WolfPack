@@ -17,22 +17,17 @@ public class Wolfs {
     public int game_cell;
     public Background background;
     public ArrayList<Integer> wolf_cell;
-    public boolean step = true;
+    public boolean step = false;
 
-    public Wolfs(int game_cell, Background background, ArrayList<Integer> wolf_cell){
+    public Wolfs(int game_cell, Background background){
         texture = new Texture("Wolfs.png");
         this.game_cell = game_cell;
         this.background = background;
-        this.wolf_cell = wolf_cell;
-        x = background.play[game_cell].x - height/2;
-        y = background.play[game_cell].y - height/2;
+        x = background.play[game_cell].Re_x - height/2;
+        y = background.play[game_cell].Re_y - height/2;
     }
 
     public void update(){
-
-    }
-
-    private void Bfs(){
 
     }
 }

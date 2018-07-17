@@ -19,7 +19,8 @@ public class PlayRightHexagon extends RightHexagon {
     public boolean red = false;
     public ArrayList<Integer> neighbors;
 
-    public Texture texture;
+    public int Re_x, Re_y;
+    private Texture texture;
 
 
     public PlayRightHexagon(int x, int y, int name){
@@ -32,6 +33,8 @@ public class PlayRightHexagon extends RightHexagon {
             texture = new Texture("left_grass.png");
         if (name == RightHexagon.right_grass)
             texture = new Texture("right_grass.png");
+        Re_x = x;
+        Re_y = y;
         this.x = x - height/2;
         this.y = y - height/2;
     }
@@ -45,6 +48,10 @@ public class PlayRightHexagon extends RightHexagon {
             texture = new Texture("left_grass.png");
         if (name == RightHexagon.right_grass)
             texture = new Texture("right_grass.png");
+    }
+
+    public Texture getTexture(){
+        return texture;
     }
 }
 

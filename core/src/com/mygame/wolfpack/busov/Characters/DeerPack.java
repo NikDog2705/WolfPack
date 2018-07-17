@@ -19,14 +19,16 @@ public class DeerPack {
     public ArrayList<Integer> path;
 
     public DeerPack(){
-
+        path = new ArrayList<Integer>();
+        texture = new Texture("DeerPack.png");
     }
 
     public DeerPack(int game_cell, Background background){
         texture = new Texture("DeerPack.png");
         this.game_cell = game_cell;
         this.background = background;
-        x = background.play[game_cell].x - height/2;
-        y = background.play[game_cell].y - height/2;
+        path = new ArrayList<Integer>();
+        x = background.play[game_cell].Re_x - height/2;
+        y = background.play[game_cell].Re_y - height/2;
     }
 }

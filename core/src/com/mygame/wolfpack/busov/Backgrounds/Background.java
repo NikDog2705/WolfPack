@@ -182,7 +182,6 @@ public class Background {
         for (BackGroundRightHexagon backGroundHexagon : templ)
             game.spriteBatch.draw(backGroundHexagon.texture, backGroundHexagon.x, backGroundHexagon.y);
         for (PlayRightHexagon playRightHexagon : play)
-            game.spriteBatch.draw(playRightHexagon.texture, playRightHexagon.x, playRightHexagon.y);
-        int i = 0;
+            game.spriteBatch.draw(playRightHexagon.getTexture(), playRightHexagon.x, playRightHexagon.y);
     }
 }

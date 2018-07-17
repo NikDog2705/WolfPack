@@ -19,14 +19,16 @@ public class Deer {
     public Background background;
     public ArrayList<Wolfs> wolf;
     public ArrayList<DeerPack> deerPacks;
-    public boolean step = false;
-    public ArrayList<Integer> steps;
+    public boolean step = true;
 
     public Deer(int game_cell, Background background, ArrayList<Wolfs> wolf, ArrayList<DeerPack> deerPacks) {
         texture = new Texture("Deer.png");
         this.wolf = wolf;
         this.deerPacks = deerPacks;
-        steps = new ArrayList<Integer>();
+        this.background = background;
+        this.game_cell = game_cell;
+        x = background.play[game_cell].Re_x - height/2;
+        y = background.play[game_cell].Re_y - height/2;
     }
 
     private void Step(){
@@ -42,14 +44,15 @@ public class Deer {
             }
         if (deerPack.path.size() > 1) {
             if (!background.play[deerPack.path.get(deerPack.path.size() - 2)].red) {
-                steps.add(deerPack.path.get(deerPack.path.size() - 1));
-                steps.add(deerPack.path.get(deerPack.path.size() - 2));
+                game_cell = deerPack.path.get(deerPack.path.size() - 2);
             }
             else
-                steps.add(deerPack.path.get(deerPack.path.size() - 1));
+                game_cell = deerPack.path.get(deerPack.path.size() - 1);
         }
         else
-            steps.add(deerPack.path.get(deerPack.path.size() - 1));
+            game_cell = deerPack.path.get(deerPack.path.size() - 1);
+        x = background.play[game_cell].Re_x - height/2;
+        y = background.play[game_cell].Re_y - height/2;
     }
 
     private void Red(){
@@ -109,7 +112,6 @@ public class Deer {
             deerPack.path.clear();
             deerPack.d = 0;
         }
-        steps.clear();
     }
 
 }
