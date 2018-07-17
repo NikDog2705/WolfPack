@@ -16,6 +16,7 @@ public class DeerPack {
     public int game_cell;
     public Background background;
     public int d = 0;
+    public int length = 0;
     public ArrayList<Integer> path;
 
     public DeerPack(){

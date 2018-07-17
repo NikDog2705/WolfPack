@@ -38,8 +38,8 @@ public class Deer {
             Bfs(deers);
         }
         for (DeerPack deers: deerPacks)
-            if (deers.d < min) {
-                min = deers.d;
+            if (deers.length < min) {
+                min = deers.length;
                 deerPack = deers;
             }
         if (deerPack.path.size() > 1) {
@@ -80,6 +80,7 @@ public class Deer {
         boolean b = false;
         int[] p = new int[120];
         int[] d = new int[120];
+        int[] length = new int[120];
         d[game_cell] = 0;
         p[game_cell] = -1;
         used[game_cell] = true;
@@ -92,6 +93,9 @@ public class Deer {
                     used[to] = true;
                     p[to] = v;
                     d[to] = d[v] + 1;
+                    length[to] = length[v] + 1;
+                    if (d[to] % 2 == 0 && !background.play[to].red)
+                        --length[to];
                     if (!(background.play[to].red && background.play[v].red))
                         q.offer(to);
                 }
@@ -102,6 +106,7 @@ public class Deer {
             }
          }
          deerPack.d = d[deerPack.game_cell];
+         deerPack.length = length[deerPack.game_cell];
         for (int v = deerPack.game_cell; v != -1; v = p[v]){
             deerPack.path.add(v);
         }
