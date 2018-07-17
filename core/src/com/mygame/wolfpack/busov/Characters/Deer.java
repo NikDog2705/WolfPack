@@ -56,10 +56,21 @@ public class Deer {
     }
 
     private void Red(){
+        boolean[] b = new boolean[120];
         for (int i = 0; i < wolf.size(); ++i) {
             background.play[wolf.get(i).game_cell].red = true;
-            for (int j = 0; j < background.play[wolf.get(i).game_cell].neighbors.size(); ++j)
-                background.play[background.play[wolf.get(i).game_cell].neighbors.get(j)].red = true;
+            for (DeerPack deerPack : deerPacks) {
+                if (wolf.get(i).game_cell == deerPack.game_cell)
+                    background.play[wolf.get(i).game_cell].red = false;
+                for (int j = 0; j < background.play[wolf.get(i).game_cell].neighbors.size(); ++j) {
+                    if (!b[background.play[wolf.get(i).game_cell].neighbors.get(j)])
+                        background.play[background.play[wolf.get(i).game_cell].neighbors.get(j)].red = true;
+                    if (background.play[wolf.get(i).game_cell].neighbors.get(j) == deerPack.game_cell) {
+                        background.play[background.play[wolf.get(i).game_cell].neighbors.get(j)].red = false;
+                        b[background.play[wolf.get(i).game_cell].neighbors.get(j)] = true;
+                    }
+                }
+            }
         }
     }
 
