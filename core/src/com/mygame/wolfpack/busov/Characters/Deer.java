@@ -43,9 +43,8 @@ public class Deer {
                 deerPack = deers;
             }
         if (deerPack.path.size() > 1) {
-            if (!background.play[deerPack.path.get(deerPack.path.size() - 2)].red) {
+            if (!background.play[deerPack.path.get(deerPack.path.size() - 2)].red)
                 game_cell = deerPack.path.get(deerPack.path.size() - 2);
-            }
             else
                 game_cell = deerPack.path.get(deerPack.path.size() - 1);
         }
@@ -93,7 +92,7 @@ public class Deer {
                     p[to] = v;
                     d[to] = d[v] + 1;
                     if (!(background.play[to].red && background.play[v].red))
-                        q.push(to);
+                        q.offer(to);
                 }
                 if (to == deerPack.game_cell) {
                     b = true;
