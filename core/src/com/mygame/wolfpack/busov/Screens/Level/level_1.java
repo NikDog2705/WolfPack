@@ -43,11 +43,10 @@ public class level_1 extends Plays implements Screen {
     protected void update() {
         for (Deer deers : deer)
             deers.update();
-        if (Gdx.input.isTouched())
-            for (Deer deers : deer){
+        if (Gdx.input.justTouched())
+            for (Deer deers : deer) {
                 deers.step = false;
             }
-
     }
 
     @Override

@@ -43,13 +43,14 @@ public class Deer {
                 deerPack = deers;
             }
         if (deerPack.path.size() > 1) {
-            if (!background.play[deerPack.path.get(deerPack.path.size() - 2)].red)
+            if (deerPack.path.size() > 2) {
+                if (!background.play[deerPack.path.get(deerPack.path.size() - 3)].red)
+                    game_cell = deerPack.path.get(deerPack.path.size() - 3);
+                else
+                    game_cell = deerPack.path.get(deerPack.path.size() - 2);
+            } else
                 game_cell = deerPack.path.get(deerPack.path.size() - 2);
-            else
-                game_cell = deerPack.path.get(deerPack.path.size() - 1);
         }
-        else
-            game_cell = deerPack.path.get(deerPack.path.size() - 1);
         x = background.play[game_cell].Re_x - height/2;
         y = background.play[game_cell].Re_y - height/2;
     }
@@ -68,7 +69,7 @@ public class Deer {
             Step();
             Cleaner();
         }
-        step = true;
+       step = true;
     }
 
     private void Bfs (DeerPack deerPack) {
