@@ -2,6 +2,8 @@ package com.mygame.wolfpack.busov.Characters;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.mygame.wolfpack.busov.Backgrounds.Background;
+import com.mygame.wolfpack.busov.Backgrounds.PlayRightHexagon;
+import com.mygame.wolfpack.busov.RightHexagon;
 
 import java.util.ArrayList;
 
@@ -16,7 +18,7 @@ public class Wolfs {
     public int x,y;
     public int game_cell;
     private Background background;
-    public ArrayList<Integer> wolf_cell;
+    public boolean step = false;
 
 
     public Wolfs(int game_cell, Background background){
@@ -29,7 +31,10 @@ public class Wolfs {
 
 
 
-    public void update(){
-
+    public void step(int x, int y){
+        for (int playRightHexagon : background.play[game_cell].neighbors){
+            if (background.play[playRightHexagon].Belong(x,y, PlayRightHexagon.height))
+                game_cell = playRightHexagon;
+        }
     }
 }

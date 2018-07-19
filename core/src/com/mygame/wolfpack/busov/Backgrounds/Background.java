@@ -39,13 +39,12 @@ public class Background {
         play = new PlayRightHexagon[120];
         TemplateInitialization();
         PlayInitialization();
-        Mount();
         Forest();
     }
 
     private void Mount(){
         for (int i = 0; i < mountain.size(); ++i){
-            templ[mountain.get(i)].setTexture(RightHexagon.mountain);
+            play[mountain.get(i)].setTexture(RightHexagon.mountain);
         }
     }
 
@@ -136,17 +135,23 @@ public class Background {
             if (play[i].facet)
                 continue;
             if (i - 1 > -1)
-                play[i].neighbors.add(i - 1);
+                if ( !(play[i-1].getIntTexture() == RightHexagon.mountain))
+                    play[i].neighbors.add(i - 1);
             if (i + 1 < 120)
-                play[i].neighbors.add(i + 1);
+                if ( !(play[i+1].getIntTexture() == RightHexagon.mountain))
+                    play[i].neighbors.add(i + 1);
             if (i - 8 > -1)
-                play[i].neighbors.add(i - 8);
+                if ( !(play[i-8].getIntTexture() == RightHexagon.mountain))
+                    play[i].neighbors.add(i - 8);
             if (i + 8 < 120)
-                play[i].neighbors.add(i + 8);
+                if ( !(play[i+8].getIntTexture() == RightHexagon.mountain))
+                    play[i].neighbors.add(i + 8);
             if (i - 7 > -1)
-                play[i].neighbors.add(i - 7);
+                if ( !(play[i-7].getIntTexture() == RightHexagon.mountain))
+                    play[i].neighbors.add(i - 7);
             if (i + 7 < 120)
-                play[i].neighbors.add(i + 7);
+                if ( !(play[i+7].getIntTexture() == RightHexagon.mountain))
+                    play[i].neighbors.add(i + 7);
         }
     }
 
@@ -155,23 +160,30 @@ public class Background {
             if (!play[i].facet)
                 continue;
             if (i - 1 > -1 && !play[i].left_facet)
-                play[i].neighbors.add(i - 1);
+                if ( !(play[i-1].getIntTexture() == RightHexagon.mountain))
+                    play[i].neighbors.add(i - 1);
             if (i + 1 < 120&& play[i].left_facet)
-                play[i].neighbors.add(i + 1);
+                if ( !(play[i+1].getIntTexture() == RightHexagon.mountain))
+                    play[i].neighbors.add(i + 1);
             if (i - 8 > -1 && (!play[i].big_facet || !play[i].left_facet))
-                play[i].neighbors.add(i - 8);
+                if ( !(play[i-8].getIntTexture() == RightHexagon.mountain))
+                    play[i].neighbors.add(i - 8);
             if (i + 8 < 120 && (!play[i].big_facet || play[i].left_facet))
-                play[i].neighbors.add(i + 8);
+                if ( !(play[i+8].getIntTexture() == RightHexagon.mountain))
+                    play[i].neighbors.add(i + 8);
             if (i - 7 > -1 && (!play[i].big_facet || play[i].left_facet))
-                play[i].neighbors.add(i - 7);
+                if ( !(play[i-7].getIntTexture() == RightHexagon.mountain))
+                    play[i].neighbors.add(i - 7);
             if (i + 7 < 120 && (!play[i].big_facet || !play[i].left_facet))
-                play[i].neighbors.add(i + 7);
+                if ( !(play[i+7].getIntTexture() == RightHexagon.mountain))
+                    play[i].neighbors.add(i + 7);
         }
     }
 
     private void PlayInitialization(){
        PlayCreat();
        PlayFacet();
+       Mount();
        PlayNormalNeighbors();
        PlayFacetNeighbors();
     }
@@ -179,7 +191,7 @@ public class Background {
 
     public void draw(com.mygame.wolfpack.busov.Game game){
         for (BackGroundRightHexagon backGroundHexagon : templ)
-            game.spriteBatch.draw(backGroundHexagon.texture, backGroundHexagon.x, backGroundHexagon.y);
+            game.spriteBatch.draw(backGroundHexagon.texture, backGroundHexagon.Re_x, backGroundHexagon.Re_y);
         for (PlayRightHexagon playRightHexagon : play)
             game.spriteBatch.draw(playRightHexagon.getTexture(), playRightHexagon.Re_x, playRightHexagon.Re_y);
     }

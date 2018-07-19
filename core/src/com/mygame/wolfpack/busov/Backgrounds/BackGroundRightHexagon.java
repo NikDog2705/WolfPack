@@ -15,19 +15,22 @@ public class BackGroundRightHexagon extends RightHexagon {
     
     Texture texture;
 
+    public int Re_x, Re_y;
 
     BackGroundRightHexagon(int x, int y, int name){
-        if (name == RightHexagon.mountain)
-            texture = new Texture("mountain.png");
         if (name == RightHexagon.water)
             texture = new Texture("water.png");
-        this.x = x - height/2;
-        this.y = y - height/2;
+        if (name == RightHexagon.play)
+            texture = new Texture("play.png");
+        this.x = x;
+        this.y = y;
+        this.Re_x = x - height/2;
+        this.Re_y = y - height/2;
     }
 
-     void setTexture(int name){
-        if (name == RightHexagon.mountain)
-            texture = new Texture("mountain.png");
+     public void setTexture(int name){
+         if (name == RightHexagon.play)
+             texture = new Texture("play.png");
         if (name == RightHexagon.water)
             texture = new Texture("water.png");
     }

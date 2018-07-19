@@ -20,6 +20,7 @@ public class PlayRightHexagon extends RightHexagon {
     public ArrayList<Integer> neighbors;
     private int name;
     public boolean wolf_here = false;
+    public boolean deerPack_here = false;
 
     public int Re_x, Re_y;
     private Texture texture;
@@ -35,8 +36,8 @@ public class PlayRightHexagon extends RightHexagon {
             texture = new Texture("left_grass.png");
         if (name == RightHexagon.right_grass)
             texture = new Texture("right_grass.png");
-        if (name == RightHexagon.play)
-            texture = new Texture("play.png");
+        if (name == RightHexagon.mountain)
+            texture = new Texture("mountain.png");
         this.name = name;
         this.x = x;
         this.y = y;
@@ -45,6 +46,7 @@ public class PlayRightHexagon extends RightHexagon {
     }
 
     public void setTexture(int name){
+        this.name = name;
         if (name == RightHexagon.forest)
             texture = new Texture("forest.png");
         if (name == RightHexagon.grass)
@@ -55,6 +57,8 @@ public class PlayRightHexagon extends RightHexagon {
             texture = new Texture("right_grass.png");
         if (name == RightHexagon.play)
             texture = new Texture("play.png");
+        if (name == RightHexagon.mountain)
+            texture = new Texture("mountain.png");
     }
 
     public Texture getTexture(){

@@ -79,12 +79,11 @@ public class Deer {
             Red();
             Step();
             Cleaner();
+            step = true;
         }
-       step = true;
     }
 
     private void Bfs (DeerPack deerPack) {
-
         ArrayDeque<Integer> q = new ArrayDeque <Integer>();
         q.push(game_cell);
         boolean[] used = new boolean [120];
