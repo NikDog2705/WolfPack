@@ -9,6 +9,7 @@ import com.mygame.wolfpack.busov.Characters.DeerPack;
 import com.mygame.wolfpack.busov.Characters.Wolfs;
 import com.mygame.wolfpack.busov.Game;
 import com.mygame.wolfpack.busov.Plays;
+import com.mygame.wolfpack.busov.RightHexagon;
 
 import java.util.ArrayList;
 
@@ -19,8 +20,8 @@ import java.util.ArrayList;
 public class level_1 extends Plays implements Screen {
 
     public level_1(Game game) {
-        super(game);
-
+        super(game,2,26);
+        background.play[26].setTexture(RightHexagon.play);
     }
 
     @Override
@@ -33,12 +34,9 @@ public class level_1 extends Plays implements Screen {
 
     @Override
     protected void AddAnimals() {
-        wolfs.add(new Wolfs(55,background));
-        wolfs.add(new Wolfs(58,background));
-        wolfs.add(new Wolfs(34,background));
-        deerPack.add(new DeerPack(41,background));
+        deerPack.add(new DeerPack(48,background));
         deerPack.add(new DeerPack(119,background));
-        deer.add(new Deer(72,background,wolfs,deerPack));
+        deer.add(new Deer(35,background,wolfs,deerPack));
     }
 
     @Override
@@ -73,8 +71,8 @@ public class level_1 extends Plays implements Screen {
             for (Wolfs wolf : wolfs)
                 game.spriteBatch.draw(wolf.texture, wolf.x, wolf.y);
         game.spriteBatch.end();
-
-        update();
+        if (!create)
+            update();
     }
 
     @Override
@@ -101,4 +99,6 @@ public class level_1 extends Plays implements Screen {
     public void dispose() {
 
     }
+
+
 }

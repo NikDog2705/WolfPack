@@ -14,12 +14,12 @@ public class DeerPack {
     public static int height = 50;
     public int x,y;
     public int game_cell;
-    public Background background;
-    public int d = 0;
-    public int length = 0;
-    public ArrayList<Integer> path;
+    private Background background;
+    int d = 0;
+    int length = 0;
+    ArrayList<Integer> path;
 
-    public DeerPack(){
+     DeerPack(){
         path = new ArrayList<Integer>();
         texture = new Texture("DeerPack.png");
     }
@@ -29,7 +29,7 @@ public class DeerPack {
         this.game_cell = game_cell;
         this.background = background;
         path = new ArrayList<Integer>();
-        x = background.play[game_cell].Re_x - height/2;
-        y = background.play[game_cell].Re_y - height/2;
+        x = background.play[game_cell].x - height/2;
+        y = background.play[game_cell].y - height/2;
     }
 }

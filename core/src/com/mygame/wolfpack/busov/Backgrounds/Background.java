@@ -80,7 +80,6 @@ public class Background {
                 templ[i] = new BackGroundRightHexagon(0,
                         (int)(null_field_y + BackGroundRightHexagon.Re_height * (i - 25) * 2 + BackGroundRightHexagon.height/2),
                         RightHexagon.water);
-                continue;
             }
         }
     }
@@ -182,6 +181,6 @@ public class Background {
         for (BackGroundRightHexagon backGroundHexagon : templ)
             game.spriteBatch.draw(backGroundHexagon.texture, backGroundHexagon.x, backGroundHexagon.y);
         for (PlayRightHexagon playRightHexagon : play)
-            game.spriteBatch.draw(playRightHexagon.getTexture(), playRightHexagon.x, playRightHexagon.y);
+            game.spriteBatch.draw(playRightHexagon.getTexture(), playRightHexagon.Re_x, playRightHexagon.Re_y);
     }
 }

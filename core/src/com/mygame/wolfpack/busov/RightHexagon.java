@@ -7,7 +7,7 @@ import com.badlogic.gdx.maps.tiled.renderers.HexagonalTiledMapRenderer;
  */
 
 public class RightHexagon {
-    public static int grass = 0, left_grass = 1, right_grass = 2, forest = 3, water = 0, mountain = 1;
+    public static int grass = 0, left_grass = 1, right_grass = 2, forest = 3, water = 0, mountain = 1,play = 4;
 
     public int x,y;
 

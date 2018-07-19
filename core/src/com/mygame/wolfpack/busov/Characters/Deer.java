@@ -16,9 +16,9 @@ public class Deer {
     public static int height = 50;
     public int x, y;
     public int game_cell;
-    public Background background;
-    public ArrayList<Wolfs> wolf;
-    public ArrayList<DeerPack> deerPacks;
+    private Background background;
+    private ArrayList<Wolfs> wolf;
+    private ArrayList<DeerPack> deerPacks;
     public boolean step = true;
 
     public Deer(int game_cell, Background background, ArrayList<Wolfs> wolf, ArrayList<DeerPack> deerPacks) {
@@ -27,8 +27,8 @@ public class Deer {
         this.deerPacks = deerPacks;
         this.background = background;
         this.game_cell = game_cell;
-        x = background.play[game_cell].Re_x - height/2;
-        y = background.play[game_cell].Re_y - height/2;
+        x = background.play[game_cell].x - height/2;
+        y = background.play[game_cell].y - height/2;
     }
 
     private void Step(){
@@ -51,8 +51,8 @@ public class Deer {
             } else
                 game_cell = deerPack.path.get(deerPack.path.size() - 2);
         }
-        x = background.play[game_cell].Re_x - height/2;
-        y = background.play[game_cell].Re_y - height/2;
+        x = background.play[game_cell].x - height/2;
+        y = background.play[game_cell].y - height/2;
     }
 
     private void Red(){
