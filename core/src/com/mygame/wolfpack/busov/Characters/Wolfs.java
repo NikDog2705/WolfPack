@@ -31,10 +31,9 @@ public class Wolfs {
 
 
 
-    public void step(int x, int y){
-        for (int playRightHexagon : background.play[game_cell].neighbors){
-            if (background.play[playRightHexagon].Belong(x,y, PlayRightHexagon.height))
-                game_cell = playRightHexagon;
-        }
+
+    public void WolfUpate(){
+        x = background.play[game_cell].x - height/2;
+        y = background.play[game_cell].y - height/2;
     }
 }

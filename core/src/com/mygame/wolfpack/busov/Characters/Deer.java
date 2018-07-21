@@ -20,6 +20,8 @@ public class Deer {
     private ArrayList<Wolfs> wolf;
     private ArrayList<DeerPack> deerPacks;
     public boolean step = true;
+    private boolean red_cell = false;
+    private boolean have_step = false;
 
     public Deer(int game_cell, Background background, ArrayList<Wolfs> wolf, ArrayList<DeerPack> deerPacks) {
         texture = new Texture("Deer.png");
@@ -44,32 +46,58 @@ public class Deer {
             }
         if (deerPack.path.size() > 1) {
             if (deerPack.path.size() > 2) {
-                if (!background.play[deerPack.path.get(deerPack.path.size() - 3)].red)
+                if (!background.play[deerPack.path.get(deerPack.path.size() - 3)].red || deerPack.path.size() - 3 == 0)
                     game_cell = deerPack.path.get(deerPack.path.size() - 3);
                 else
                     game_cell = deerPack.path.get(deerPack.path.size() - 2);
-            } else
+            }
+            else
                 game_cell = deerPack.path.get(deerPack.path.size() - 2);
+        }
+        if (!have_step && red_cell){
+            for (int i = 0; i < background.play[game_cell].neighbors.size(); ++i){
+                if (!background.play[background.play[game_cell].neighbors.get(i)].red) {
+                    game_cell = background.play[game_cell].neighbors.get(i);
+                    have_step = true;
+                    break;
+                }
+            }
+        }
+        if (!have_step && red_cell){
+            for (int i = 0; i < background.play[game_cell].neighbors.size(); ++i)
+                for (int j = 0; j < background.play[background.play[game_cell].neighbors.get(i)].neighbors.size(); ++j)
+                    if (!background.play[background.play[background.play[game_cell].neighbors.get(i)].neighbors.get(j)].red) {
+                        game_cell = background.play[background.play[game_cell].neighbors.get(i)].neighbors.get(j);
+                        break;
+                    }
         }
         x = background.play[game_cell].x - height/2;
         y = background.play[game_cell].y - height/2;
     }
 
     private void Red(){
-        boolean[] b = new boolean[120];
         for (int i = 0; i < wolf.size(); ++i) {
             background.play[wolf.get(i).game_cell].red = true;
-            for (DeerPack deerPack : deerPacks) {
-                if (wolf.get(i).game_cell == deerPack.game_cell)
-                    background.play[wolf.get(i).game_cell].red = false;
+            for (int j = 0; j < background.play[wolf.get(i).game_cell].neighbors.size(); ++j) {
+                if (background.play[wolf.get(i).game_cell].neighbors.get(j) != game_cell)
+                    background.play[background.play[wolf.get(i).game_cell].neighbors.get(j)].red = true;
+                else
+                    red_cell = true;
+            }
+            for (DeerPack deerPack : deerPacks)
                 for (int j = 0; j < background.play[wolf.get(i).game_cell].neighbors.size(); ++j) {
-                    if (!b[background.play[wolf.get(i).game_cell].neighbors.get(j)])
-                        background.play[background.play[wolf.get(i).game_cell].neighbors.get(j)].red = true;
-                    if (background.play[wolf.get(i).game_cell].neighbors.get(j) == deerPack.game_cell) {
-                        background.play[background.play[wolf.get(i).game_cell].neighbors.get(j)].red = false;
-                        b[background.play[wolf.get(i).game_cell].neighbors.get(j)] = true;
-                    }
+                if (background.play[deerPack.game_cell] == background.play[wolf.get(i).game_cell]) {
+                    background.play[background.play[wolf.get(i).game_cell].neighbors.get(j)].red = false;
                 }
+            }
+        }
+    }
+
+    private void UnRed(){
+        for (int i = 0; i < wolf.size(); ++i) {
+            background.play[wolf.get(i).game_cell].red = false;
+            for (int j = 0; j < background.play[wolf.get(i).game_cell].neighbors.size(); ++j) {
+                background.play[background.play[wolf.get(i).game_cell].neighbors.get(j)].red = false;
             }
         }
     }
@@ -117,16 +145,23 @@ public class Deer {
          }
          deerPack.d = d[deerPack.game_cell];
          deerPack.length = length[deerPack.game_cell];
-        for (int v = deerPack.game_cell; v != -1; v = p[v]){
-            deerPack.path.add(v);
-        }
+         if (b) {
+             for (int v = deerPack.game_cell; v != -1; v = p[v]) {
+                 deerPack.path.add(v);
+             }
+             have_step = true;
+         }
     }
 
     private void Cleaner(){
         for (DeerPack deerPack: deerPacks) {
-            deerPack.path.clear();
+            while (deerPack.path.size() != 0)
+                deerPack.path.remove(0);
             deerPack.d = 0;
         }
+        UnRed();
+        have_step = false;
+        red_cell = false;
     }
 
 }

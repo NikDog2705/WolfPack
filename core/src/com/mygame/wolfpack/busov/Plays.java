@@ -64,8 +64,10 @@ public abstract class Plays extends InputAdapter implements Screen {
                 else{
                     if (!step_deer ) {
                         WolfUpdate(x, y);
-                        if(background.templ[play_button].Belong(x,y,PlayRightHexagon.height))
+                        if(background.templ[play_button].Belong(x,y,PlayRightHexagon.height)) {
                             step_deer = true;
+                            count_wolf_step = 0;
+                        }
                         if (count_wolf_step >= const_count_wolf) {
                             step_deer = true;
                             count_wolf_step = 0;
@@ -84,22 +86,21 @@ public abstract class Plays extends InputAdapter implements Screen {
                 if (background.play[wolf.game_cell].Belong(x,y,PlayRightHexagon.height)
                         && !wolf.step) {
                     wolf_click = true;
-                    wolf.step = true;
                     wolf_clicked = wolf;
+                    System.out.println(wolf_clicked.step);
                 }
             }
         else{
-            if (background.play[wolf_clicked.game_cell].Belong(x,y,PlayRightHexagon.height))
-                wolf_click = false;
             for (int playRightHexagon : background.play[wolf_clicked.game_cell].neighbors)
                 if (background.play[playRightHexagon].Belong(x,y,PlayRightHexagon.height)
                         && !background.play[playRightHexagon].wolf_here && !background.play[playRightHexagon].deerPack_here) {
+                    wolf_clicked.step = true;
                     background.play[wolf_clicked.game_cell].wolf_here = false;
-                    wolfs.remove(wolf_clicked);
-                    wolfs.add(new Wolfs(playRightHexagon, background));
-                    wolf_click = false;
+                    wolf_clicked.game_cell = playRightHexagon;
+                    wolf_clicked.WolfUpate();
                     ++count_wolf_step;
                 }
+            wolf_click = false;
         }
     }
 
