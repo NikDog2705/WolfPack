@@ -96,6 +96,7 @@ public abstract class Plays extends InputAdapter implements Screen {
                         && !background.play[playRightHexagon].wolf_here && !background.play[playRightHexagon].deerPack_here) {
                     wolf_clicked.step = true;
                     background.play[wolf_clicked.game_cell].wolf_here = false;
+                    background.play[playRightHexagon].wolf_here = true;
                     wolf_clicked.game_cell = playRightHexagon;
                     wolf_clicked.WolfUpate();
                     ++count_wolf_step;

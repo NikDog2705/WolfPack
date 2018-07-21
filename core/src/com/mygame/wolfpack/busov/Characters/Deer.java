@@ -135,7 +135,8 @@ public class Deer {
                     if (d[to] % 2 == 0 && !background.play[to].red)
                         --length[to];
                     if (!(background.play[to].red && background.play[v].red))
-                        q.offer(to);
+                        if (!background.play[to].wolf_here)
+                            q.offer(to);
                 }
                 if (to == deerPack.game_cell) {
                     b = true;
