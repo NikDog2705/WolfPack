@@ -1,26 +1,18 @@
 package com.mygame.wolfpack.busov.Screens.Level;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.GL20;
-import com.mygame.wolfpack.busov.Backgrounds.Background;
-import com.mygame.wolfpack.busov.Characters.Deer;
-import com.mygame.wolfpack.busov.Characters.DeerPack;
-import com.mygame.wolfpack.busov.Characters.Wolfs;
 import com.mygame.wolfpack.busov.Game;
 import com.mygame.wolfpack.busov.Plays;
-import com.mygame.wolfpack.busov.RightHexagon;
-
-import java.util.ArrayList;
+import com.badlogic.gdx.Screen;
 
 /**
- * Created by Master_Igor on 27.06.2018.
+ * Created by Master_Igor on 22.07.2018.
  */
 
-public class level_1 extends Plays {
+public class level_0 extends Plays {
 
-    public level_1(Game game) {
-        super(game,3, 1);
+
+    public level_0(Game game) {
+        super(game, 4, 0);
     }
 
     @Override
