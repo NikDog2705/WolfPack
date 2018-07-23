@@ -11,7 +11,7 @@ public class level_2 extends Plays {
 
 
     public level_2(Game game) {
-        super(game, 4, 2);
+        super(game, 3, 2);
     }
 
     @Override

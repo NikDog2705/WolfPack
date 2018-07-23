@@ -1,15 +1,12 @@
 package com.mygame.wolfpack.busov;
 
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygame.wolfpack.busov.Screens.Menu;
 import com.mygame.wolfpack.busov.Screens.Level.level_1;
+import com.mygame.wolfpack.busov.Screens.Levels;
 
 public class Game extends com.badlogic.gdx.Game {
 	public SpriteBatch spriteBatch;
@@ -17,7 +14,8 @@ public class Game extends com.badlogic.gdx.Game {
 	//public Music music;
 	public OrthographicCamera camera;
 	public static double ScreenWidht = 600, Re_ScreenWidht;
-	public static double ScreenHeight = 900, Re_ScreenHeight;
+	public static double ScreenHeight = 950, Re_ScreenHeight;
+	public static double GameScreenHeight = 900;
 	public static double Re_widht;
 	public static double Re_height;
 
@@ -43,7 +41,9 @@ public class Game extends com.badlogic.gdx.Game {
 			Re_ScreenHeight = ScreenHeight;
 		}
 		camera.setToOrtho(false,(int)Re_ScreenWidht, (int)Re_ScreenHeight);
-		this.setScreen(new level_1(this));
+		bitmapFont.setColor(0,0,0,1);
+		bitmapFont.getData().setScale(2);
+		this.setScreen(new Levels(this));
 	}
 
 	@Override

@@ -2,10 +2,6 @@ package com.mygame.wolfpack.busov.Characters;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.mygame.wolfpack.busov.Backgrounds.Background;
-import com.mygame.wolfpack.busov.Backgrounds.PlayRightHexagon;
-import com.mygame.wolfpack.busov.RightHexagon;
-
-import java.util.ArrayList;
 
 /**
  * Created by Master_Igor on 27.06.2018.

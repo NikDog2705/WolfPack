@@ -5,12 +5,8 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.mygame.wolfpack.busov.Characters.Deer;
-import com.mygame.wolfpack.busov.Characters.DeerPack;
-import com.mygame.wolfpack.busov.Characters.Wolfs;
 import com.mygame.wolfpack.busov.Game;
-import com.mygame.wolfpack.busov.Hexagons.LevelRighHexagon;
-import com.mygame.wolfpack.busov.Hexagons.PlayRightHexagon;
+import com.mygame.wolfpack.busov.Hexagons.LevelRightHexagon;
 import com.mygame.wolfpack.busov.Screens.Level.level_0;
 import com.mygame.wolfpack.busov.Screens.Level.level_1;
 import com.mygame.wolfpack.busov.Screens.Level.level_2;
@@ -21,12 +17,12 @@ import com.mygame.wolfpack.busov.Screens.Level.level_2;
 
 public class Levels extends InputAdapter implements Screen {
 
-    private LevelRighHexagon[] levels;
+    private LevelRightHexagon[] levels;
     private Game game;
     private Texture texture;
 
     public Levels(Game game){
-        levels = new LevelRighHexagon[3];
+        levels = new LevelRightHexagon[3];
         this.game = game;
         LevelInit();
         texture = new Texture("level_bg.png");
@@ -42,17 +38,17 @@ public class Levels extends InputAdapter implements Screen {
     }
 
     private void LevelInit(){
-        levels[0] = new LevelRighHexagon((int)Game.ScreenWidht / 2, (int) ( Game.Re_ScreenHeight - LevelRighHexagon.height), 0);
-        levels[1] = new LevelRighHexagon((int)Game.ScreenWidht / 2, (int) (Game.Re_ScreenHeight -  LevelRighHexagon.height * 2), 1);
-        levels[2] = new LevelRighHexagon((int)Game.ScreenWidht / 2, (int) (Game.Re_ScreenHeight -  LevelRighHexagon.height * 3), 2);
+        levels[0] = new LevelRightHexagon((int)Game.ScreenWidht / 2, (int) ( Game.Re_ScreenHeight - LevelRightHexagon.height), 0);
+        levels[1] = new LevelRightHexagon((int)Game.ScreenWidht / 2, (int) (Game.Re_ScreenHeight -  LevelRightHexagon.height * 2), 1);
+        levels[2] = new LevelRightHexagon((int)Game.ScreenWidht / 2, (int) (Game.Re_ScreenHeight -  LevelRightHexagon.height * 3), 2);
     }
 
     private void update(int x, int y){
-        if (levels[1].Belong(x,y,LevelRighHexagon.height))
+        if (levels[1].Belong(x,y, LevelRightHexagon.height))
             game.setScreen(new level_1(game));
-        if (levels[0].Belong(x,y,LevelRighHexagon.height))
+        if (levels[0].Belong(x,y, LevelRightHexagon.height))
             game.setScreen(new level_0(game));
-        if (levels[2].Belong(x,y,LevelRighHexagon.height))
+        if (levels[2].Belong(x,y, LevelRightHexagon.height))
             game.setScreen(new level_2(game));
     }
 
@@ -71,10 +67,10 @@ public class Levels extends InputAdapter implements Screen {
 
         game.spriteBatch.begin();
         game.spriteBatch.draw(texture, 0, 0);
-            for (LevelRighHexagon levelRighHexagon : levels) {
-                game.spriteBatch.draw(levelRighHexagon.texture, levelRighHexagon.Re_x, levelRighHexagon.Re_y);
-                game.bitmapFont.draw(game.spriteBatch, Integer.toString(levelRighHexagon.number),
-                        levelRighHexagon.Re_x + LevelRighHexagon.height/2, levelRighHexagon.Re_y + LevelRighHexagon.height/2);
+            for (LevelRightHexagon levelRightHexagon : levels) {
+                game.spriteBatch.draw(levelRightHexagon.texture, levelRightHexagon.Re_x, levelRightHexagon.Re_y);
+                game.bitmapFont.draw(game.spriteBatch, Integer.toString(levelRightHexagon.number),
+                        levelRightHexagon.Re_x + LevelRightHexagon.height/2, levelRightHexagon.Re_y + LevelRightHexagon.height/2);
             }
          game.spriteBatch.end();
     }
@@ -104,7 +100,7 @@ public class Levels extends InputAdapter implements Screen {
         game.spriteBatch.dispose();
         game.bitmapFont.dispose();
         texture.dispose();
-        for (LevelRighHexagon levelRighHexagon: levels)
-            levelRighHexagon.texture.dispose();
+        for (LevelRightHexagon levelRightHexagon : levels)
+            levelRightHexagon.texture.dispose();
     }
 }
